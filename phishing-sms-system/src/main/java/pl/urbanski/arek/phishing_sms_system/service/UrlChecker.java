@@ -3,6 +3,7 @@ package pl.urbanski.arek.phishing_sms_system.service;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -21,6 +22,7 @@ public class UrlChecker {
   private final RestTemplate restTemplate;
   private final UrlCache urlCache;
 
+  @Autowired
   public UrlChecker(RestTemplate restTemplate, UrlCache urlCache) {
     this.restTemplate = restTemplate;
     this.urlCache = urlCache;

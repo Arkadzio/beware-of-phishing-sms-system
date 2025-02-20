@@ -2,6 +2,7 @@ package pl.urbanski.arek.phishing_sms_system.service;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.urbanski.arek.phishing_sms_system.model.Sms;
 
@@ -11,6 +12,7 @@ public class SmsService {
   private final SubscriptionService subscriptionService;
   private final UrlChecker urlChecker;
 
+  @Autowired
   public SmsService(SubscriptionService subscriptionService, UrlChecker urlChecker) {
     this.subscriptionService = subscriptionService;
     this.urlChecker = urlChecker;
@@ -27,7 +29,7 @@ public class SmsService {
       return "Subscription deactivated";
     }
     if (subscriptionService.isSubscribed(sms.getRecipient())) {
-      Matcher matcher = Pattern.compile("(http?://\\S+)").matcher(message);
+      Matcher matcher = Pattern.compile("(https?://\\S+)").matcher(message);
       while (matcher.find()) {
         String url = matcher.group(1);
         if (urlChecker.isPhishing(url)) {
