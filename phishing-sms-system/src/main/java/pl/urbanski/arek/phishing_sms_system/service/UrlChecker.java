@@ -57,14 +57,8 @@ public class UrlChecker {
     } catch (Exception e) {
       e.printStackTrace();
 
-      boolean isPhishingFallback = urlToCheck.toLowerCase().contains("phishing");
-      urlCache.put(urlToCheck, !isPhishingFallback);
-      return isPhishingFallback;
-
-//      urlCache.put(urlToCheck, false);
-//      return true;
     }
-    urlCache.put(urlToCheck, true);
-    return false;
+    urlCache.put(urlToCheck, false);
+    return true;
   }
 }
